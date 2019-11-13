@@ -1,0 +1,31 @@
+def hangaroo(secretWord):
+    print("It's time for HANGAROOOO!!")
+    print("This word consists of", len(secretWord), "letters.")
+    mistakesMade = 0
+    lettersGuessed = []
+    
+    while 26 - mistakesMade > 0:
+        if isWordGuessed(secretWord, lettersGuessed) == True:
+            print("Great Job! Good Game! The word is ", getGuessedWord(secretWord, lettersGuessed))
+            print("Mistakes made: ", mistakesMade)
+            break
+        print("Mistakes made so far:", mistakesMade)
+        print("Available letters: ", getAvailableLetters(lettersGuessed))
+        letter = str(input("Enter a letter: ")).lower()
+        if letter not in lettersGuessed:
+            lettersGuessed.append(letter)
+            if letter in secretWord:
+            	print("Nice! Keep it Up!", getGuessedWord(secretWord, lettersGuessed))
+            else:
+            	print("That letter is not included: ", getGuessedWord(secretWord, lettersGuessed))
+            	lettersGuessed.append(letter)
+            	mistakesMade += 1
+                
+        else:
+            print("You have already used this letter: ", getGuessedWord(secretWord, lettersGuessed))
+            	
+        if 26 - mistakesMade == 0:
+            print("Game Over! The word is", secretWord)
+            break
+        else:
+            continue
